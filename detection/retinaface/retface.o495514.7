@@ -1,0 +1,46 @@
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2019 NVIDIA Corporation
+Built on Wed_Oct_23_19:24:38_PDT_2019
+Cuda compilation tools, release 10.2, V10.2.89
+# conda environments:
+#
+base                     /afs/crc.nd.edu/user/p/ptinsley/miniconda3
+arcface                  /afs/crc.nd.edu/user/p/ptinsley/miniconda3/envs/arcface
+magface                  /afs/crc.nd.edu/user/p/ptinsley/miniconda3/envs/magface
+metrics                  /afs/crc.nd.edu/user/p/ptinsley/miniconda3/envs/metrics
+retinaface            *  /afs/crc.nd.edu/user/p/ptinsley/miniconda3/envs/retinaface
+sg2ada                   /afs/crc.nd.edu/user/p/ptinsley/miniconda3/envs/sg2ada
+stylegan3                /afs/crc.nd.edu/user/p/ptinsley/miniconda3/envs/stylegan3
+
+[16:00:51] src/nnvm/legacy_json_util.cc:204: Warning: loading symbol saved by MXNet version 10300 with lower version of MXNet v10201. May cause undefined behavior. Please update MXNet if you encounter any issue
+[16:01:08] src/operator/nn/./cudnn/./cudnn_algoreg-inl.h:107: Running performance tests to find the best convolution algorithm, this can take a while... (setting env variable MXNET_CUDNN_AUTOTUNE_DEFAULT to 0 to disable)
+[32, 16, 8] {'32': {'SCALES': (32, 16), 'BASE_SIZE': 16, 'RATIOS': (1.0,), 'ALLOWED_BORDER': 9999}, '16': {'SCALES': (8, 4), 'BASE_SIZE': 16, 'RATIOS': (1.0,), 'ALLOWED_BORDER': 9999}, '8': {'SCALES': (2, 1), 'BASE_SIZE': 16, 'RATIOS': (1.0,), 'ALLOWED_BORDER': 9999}}
+means [0. 0. 0.]
+use_landmarks True
+cascade 0
+sym size: 9
+Found 300000 images...
+Traceback (most recent call last):
+  File "test.py", line 39, in <module>
+    faces, _ = detector.detect(img, thresh, do_flip=False)
+  File "/afs/crc.nd.edu/user/p/ptinsley/insightface/detection/retinaface/retinaface.py", line 346, in detect
+    scores = net_out[sym_idx].asnumpy()
+  File "/afs/crc.nd.edu/user/p/ptinsley/miniconda3/envs/retinaface/lib/python3.6/site-packages/mxnet/ndarray/ndarray.py", line 1876, in asnumpy
+    ctypes.c_size_t(data.size)))
+  File "/afs/crc.nd.edu/user/p/ptinsley/miniconda3/envs/retinaface/lib/python3.6/site-packages/mxnet/base.py", line 149, in check_call
+    raise MXNetError(py_str(_LIB.MXGetLastError()))
+mxnet.base.MXNetError: [16:01:27] src/operator/nn/./cudnn/cudnn_convolution-inl.h:156: Check failed: e == CUDNN_STATUS_SUCCESS (8 vs. 0) cuDNN: CUDNN_STATUS_EXECUTION_FAILED
+
+Stack trace returned 10 entries:
+[bt] (0) /afs/crc.nd.edu/user/p/ptinsley/miniconda3/envs/retinaface/lib/python3.6/site-packages/mxnet/libmxnet.so(dmlc::StackTrace[abi:cxx11]()+0x5a) [0x1545cca2e12a]
+[bt] (1) /afs/crc.nd.edu/user/p/ptinsley/miniconda3/envs/retinaface/lib/python3.6/site-packages/mxnet/libmxnet.so(dmlc::LogMessageFatal::~LogMessageFatal()+0x28) [0x1545cca2eba8]
+[bt] (2) /afs/crc.nd.edu/user/p/ptinsley/miniconda3/envs/retinaface/lib/python3.6/site-packages/mxnet/libmxnet.so(mxnet::op::CuDNNConvolutionOp<float>::Forward(mxnet::OpContext const&, std::vector<mxnet::TBlob, std::allocator<mxnet::TBlob> > const&, std::vector<mxnet::OpReqType, std::allocator<mxnet::OpReqType> > const&, std::vector<mxnet::TBlob, std::allocator<mxnet::TBlob> > const&)+0x389) [0x1545cf97e889]
+[bt] (3) /afs/crc.nd.edu/user/p/ptinsley/miniconda3/envs/retinaface/lib/python3.6/site-packages/mxnet/libmxnet.so(void mxnet::op::ConvolutionCompute<mshadow::gpu>(nnvm::NodeAttrs const&, mxnet::OpContext const&, std::vector<mxnet::TBlob, std::allocator<mxnet::TBlob> > const&, std::vector<mxnet::OpReqType, std::allocator<mxnet::OpReqType> > const&, std::vector<mxnet::TBlob, std::allocator<mxnet::TBlob> > const&)+0xbfc) [0x1545cf9729fc]
+[bt] (4) /afs/crc.nd.edu/user/p/ptinsley/miniconda3/envs/retinaface/lib/python3.6/site-packages/mxnet/libmxnet.so(mxnet::exec::FComputeExecutor::Run(mxnet::RunContext, bool)+0x155) [0x1545cf138a45]
+[bt] (5) /afs/crc.nd.edu/user/p/ptinsley/miniconda3/envs/retinaface/lib/python3.6/site-packages/mxnet/libmxnet.so(+0x3211757) [0x1545cf0eb757]
+[bt] (6) /afs/crc.nd.edu/user/p/ptinsley/miniconda3/envs/retinaface/lib/python3.6/site-packages/mxnet/libmxnet.so(mxnet::engine::ThreadedEngine::ExecuteOprBlock(mxnet::RunContext, mxnet::engine::OprBlock*)+0xbd0) [0x1545cf707a10]
+[bt] (7) /afs/crc.nd.edu/user/p/ptinsley/miniconda3/envs/retinaface/lib/python3.6/site-packages/mxnet/libmxnet.so(void mxnet::engine::ThreadedEnginePerDevice::GPUWorker<(dmlc::ConcurrentQueueType)0>(mxnet::Context, bool, mxnet::engine::ThreadedEnginePerDevice::ThreadWorkerBlock<(dmlc::ConcurrentQueueType)0>*, std::shared_ptr<dmlc::ManualEvent> const&)+0xeb) [0x1545cf718a1b]
+[bt] (8) /afs/crc.nd.edu/user/p/ptinsley/miniconda3/envs/retinaface/lib/python3.6/site-packages/mxnet/libmxnet.so(std::_Function_handler<void (std::shared_ptr<dmlc::ManualEvent>), mxnet::engine::ThreadedEnginePerDevice::PushToExecute(mxnet::engine::OprBlock*, bool)::{lambda()#3}::operator()() const::{lambda(std::shared_ptr<dmlc::ManualEvent>)#1}>::_M_invoke(std::_Any_data const&, std::shared_ptr<dmlc::ManualEvent>&&)+0x4e) [0x1545cf718c7e]
+[bt] (9) /afs/crc.nd.edu/user/p/ptinsley/miniconda3/envs/retinaface/lib/python3.6/site-packages/mxnet/libmxnet.so(std::thread::_Impl<std::_Bind_simple<std::function<void (std::shared_ptr<dmlc::ManualEvent>)> (std::shared_ptr<dmlc::ManualEvent>)> >::_M_run()+0x4a) [0x1545cf71637a]
+
+
