@@ -1,4 +1,19 @@
 
+# @Deeksha - here you go!
+
+1. Clone this repository to your account on the CRC.
+2. Download conda to your CRC account. I recommend using miniconda from here:
+https://docs.conda.io/en/latest/miniconda.html
+3. Create the arcface conda environment with:
+conda env create -f environment_deeksha.yml
+4. Navigate to the recognition/arface_torch directory of the repo. Change the JOB_SCRIPT.sh to your files...
+line 9 should be straightforward enough to change
+line 20 should be changed to wherever you installed conda in step 2
+line 28 you have to change the inputDir to a folder of .png images
+5. qsub JOB_SCRIPT.sh to submit the job 
+Some smaller specifications can be changed in FOR_DEEKSHA.py (which is actually what is run from the JOB_SCRIPT.sh)
+
+
 # InsightFace: 2D and 3D Face Analysis Project
 
 <div align="left">
